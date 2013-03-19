@@ -98,11 +98,10 @@ var Game = function Game($, args) {
     $(document).unbind('keyup');
   }
 
-  this.restart = function() {
+  this.reset = function() {
     $(_this.players).each(function(key, player) {
       player.reset();
     });
-    _this.start();
   }
 }
 
@@ -143,7 +142,8 @@ $(document).ready(function() {
     $('#winner').empty().removeClass();
     $(this).hide();
 
-    game.restart();
+    game.reset();
+    game.countdown({start: 3, interval: countdown, finish: start_game});
   });
 
   var track_length = $('.racer_table tr:first-child td').length;
