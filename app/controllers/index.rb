@@ -1,20 +1,33 @@
 get '/' do
-
-  erb :index
-end
-
-get '/play' do
-
-  erb :racer
+  if current_users
+    redirect '/play'
+  else
+    erb :index
+  end
 end
 
 post '/play' do
-  @player1 = Player.find_or_create_by_initials(params[:player1])
-  @player2 = Player.find_or_create_by_initials(params[:player2])
-  session[:player1] = @player1.id
-  session[:player2] = @player2.id
+  if params[:player1].length <= 3 && params[:player2].length <= 3
+    @player1 = Player.find_or_create_by_initials(params[:player1])
+    @player2 = Player.find_or_create_by_initials(params[:player2])
+    session[:player1] = @player1.id
+    session[:player2] = @player2.id
 
-  erb :racer
+    erb :racer
+  else
+    redirect '/'
+  end
+end
+
+get '/play' do
+  @player1 = Player.find(session[:player1])
+  @player2 = Player.find(session[:player2])
+
+  if current_users
+    erb :racer
+  else
+    redirect '/'
+  end
 end
 
 post '/save' do
@@ -40,9 +53,11 @@ get '/profile/:initials' do
   @player.games.each do |game|
     games_array << game.time if game.winner_id == @player.id
   end
-
-  @best_time = games_array.min / 1000.0
-
+  if games_array.empty?
+    @best_time = "No Best Time"
+  else
+    @best_time = games_array.min / 1000.0
+  end
 
   won_array = []
   loss_array = []
@@ -54,4 +69,9 @@ get '/profile/:initials' do
   @record = "#{won_array.length} - #{loss_array.length}"
 
   erb :profile
+end
+
+get '/signout' do
+  session.clear
+  redirect '/'
 end

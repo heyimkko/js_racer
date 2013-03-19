@@ -1,23 +1,100 @@
+body {
+  background-color: #516057;
+}
+
+strong {
+  color: #43212E;
+}
+
+.container a {
+  color: #43212E;
+}
+
+.container a:visited {
+  color: #43212E;
+}
+
+.container a:hover {
+  text-decoration: none; 
+}
+
+/* LAYOUT */
+
+#logo {
+  float:left;
+  font-size: 4em;
+  font-family: 'Open Sans';
+  font-style: italic;
+  letter-spacing: -3px;
+  font-weight: 800;
+  padding-left: 30px;
+}
+
+#logo a:hover {
+  color: #F2D57E;
+}
+
+nav {
+  float: right;
+  background-color: #43212E;
+  margin-bottom: 30px;
+  width: 100%;
+  text-align: right;
+  padding-right: 20px;
+}
+
+nav a {
+  color: #F2D57E;
+  /*text-shadow: -1px -1px #A9A688;*/
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #D9666F;
+}
+
+.nav li {
+  font-family: 'Open Sans';
+  font-size: 2em;
+  padding: 18px;
+  display: inline;
+}
+
+.nav li a {
+    line-height: 60px;
+}
+
 .container {
-  margin: 0 auto;
-  padding-top: 100px;
+  clear: both;
+  border-radius: 15px;
+  margin: 0px auto;
   width: 1024px;
-  text-align: center;
+  padding: 0px 20px 20px 20px;
+  border: 4px solid black;
+  background-color: #A9A688;
+  display: block !important;
 }
 
 .racer_table {
   margin: 0 auto;
 }
 
+li {
+  list-style: none;
+
+}
+
+/* RACER VIEW */
+
+.racer_table {
+  margin-top: 100px;
+}
+
 .racer_table td {
-  background-color: #eee;
+  background-color: #516057;
   border: 1px solid #ccc;
   height: 30px;
   width: 30px;
-}
-
-.racer_table td.active {
-  box-shadow: 0px 0px 2px yellow;
 }
 
 #player1_strip td.active {
@@ -46,24 +123,93 @@
 
 h1 {
   font-family: sans-serif;
+  color: #516057;
 }
 
-form {
+.clearfix:after {
+  content: ".";
   display: block;
-  width: 400px;
-  border: 2px solid #000;
-  border-radius: 15px;
-  background-color: #ccc;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+
+.clearfix {
+  display: inline-block;
+  height: 1%;
+}
+
+/* Form */
+
+form {
+  float: left;
+  display: inline-block;
+  width: 280px;
+  border: 2px solid #43212E;
+  /*border-radius: 15px;*/
+  background-color: #516057;
   margin: 0px auto;
+  text-align: center;
+}
+
+form .input {
+  height: 40px;
+  font-family: 'Arial';
+  border: #43212E solid 2px;
+  color: #000;
+  padding-left: 5px;
+}
+
+form .button {
+  background-color: #F2D57E;
+  border-radius: 5px;
+  border: 2px solid #000;
+}
+
+form .button:hover {
+  background-color: #43212E;  
+}
+
+.landing-right {
+  float: left;
+  margin-left: 20px;
+  display: inline-block;
+}
+
+p {
+  color: #F2D57E;
+  font-family: 'Open Sans';
+  font-size: 1em;
+}
+
+p.instructions {
+  color: #F2D57E;
+  font-family: 'Open Sans';
+  font-size: 1em;
 }
 
 #counter {
   margin: auto;
-  font-family: Georgia;
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 800;
   font-size: 4em;
+  text-align: center;
+  color: #43212E;
 }
 
 .restart {
-  margin: 0 auto;
+  background-color: #F2D57E;
+  border-radius: 5px;
+  border: 2px solid #000;
   width: 200px;
+}
+
+.restart:hover {
+  background-color: #43212E;  
+}
+
+p#restart {
+  margin: 0px auto;  
 }

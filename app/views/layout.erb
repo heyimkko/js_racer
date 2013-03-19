@@ -5,12 +5,23 @@
   <link rel="stylesheet" href="/css/main.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:800italic,700' rel='stylesheet' type='text/css'>
 
-  <title></title>
+  <title>Need for Keys || JS Racer</title>
 </head>
 <body>
-  <div class="container">
-  <%= yield %>
-</div>
+
+  <nav>
+  <li id="logo"><a href="/">Need For Keys</a></li>
+  <ul class="nav">
+    <li><a href="/games">All Games</a></li>
+  <% if current_users %>
+    <li><a href="/signout">New Players</a></li>
+  <% end %>
+</nav>
+
+  <div class="container clearfix">
+    <%= yield %>
+  </div>
 </body>
 </html>

@@ -7,4 +7,8 @@ class Player < ActiveRecord::Base
   def wins
     Game.where("winner_id = ?", self.id)  
   end
+
+  def save
+    self.length <= 3
+  end
 end
