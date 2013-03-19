@@ -7,15 +7,16 @@ get '/' do
 end
 
 post '/play' do
-  if params[:player1].length <= 3 && params[:player2].length <= 3
-    @player1 = Player.find_or_create_by_initials(params[:player1])
-    @player2 = Player.find_or_create_by_initials(params[:player2])
+  @player1 = Player.find_or_initialize_by_initials(params[:player1])
+  @player2 = Player.find_or_initialize_by_initials(params[:player2])
+
+  if @player1.save && @player2.save
     session[:player1] = @player1.id
     session[:player2] = @player2.id
 
     erb :racer
   else
-    redirect '/'
+    erb :index
   end
 end
 
@@ -31,8 +32,8 @@ get '/play' do
 end
 
 post '/save' do
-  Game.create time: params[:time], 
-              winner_id: params[:winner], 
+  Game.create time: params[:time],
+              winner_id: params[:winner],
               players: [Player.find(session[:player1]), Player.find(session[:player2])]
 end
 
