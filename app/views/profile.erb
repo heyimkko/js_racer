@@ -1,0 +1,18 @@
+<h1>Profile for <%= @player.initials %></h1>
+
+<h3>Record</h3>
+<p id="personal_record">
+ <%= @record %> 
+</p>
+<h3>Best Time</h3>
+<p id="best_time">
+<%= @best_time %>
+</p>
+
+<ul>
+  <% @player.games.each do |game| %>
+    <li><a href="/games/<%= game.id %>"><%= game.players[0].initials %> VS. <%= game.players[1].initials %></a> | <span id="profile_result"><%= game.winner_id == @player.id ? "VICTORY" : "FAILURE" %></span></li>
+  <% end %>
+</ul>
+
+<a href="/games">Back to All Games</a>

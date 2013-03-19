@@ -1,0 +1,9 @@
+<h1>All Games</h1>
+<ul>
+    <li>Player 1: <a href="/profile/<%= @game.players[0].initials %>"><%= @game.players[0].initials %></a></li>
+    <li>Player 2: <a href="/profile/<%= @game.players[1].initials %>"><%= @game.players[1].initials %></a></li>
+    <li>Winner: <%= @game.winner.initials %></li>
+    <li>Time: <%= @game.time / 1000.0 %> Seconds</li>
+</ul>
+
+<a href="/games">Back to All Games</a>
