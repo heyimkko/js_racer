@@ -1,5 +1,5 @@
 var Game = function Game($, args) {
-  this.args = args ? args : {};
+  this.args = args || {};
   this.players = [];
   this.start_time;
   this.track_length = this.args.track_length;
@@ -26,6 +26,7 @@ var Game = function Game($, args) {
       this.reset = function() {
         this.place = 0;
       }
+
       this.reset();
     }
 
