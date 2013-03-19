@@ -15,7 +15,7 @@ strong {
 }
 
 .container a:hover {
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 /* LAYOUT */
@@ -97,11 +97,11 @@ li {
   width: 30px;
 }
 
-#player1_strip td.active {
+#track_1 td.active {
   background: url('http://static-www.ec.popcap.com/www.popcap.com/sites/all/themes/popcap_2012/images/baby_icons/baby_icon_monopoly.gif');
 }
 
-#player2_strip td.active {
+#track_2 td.active {
   background: url('http://profile.ak.fbcdn.net/hprofile-ak-ash4/s32x32/188101_105563679583604_1313911932_q.jpg');
 }
 
@@ -113,11 +113,11 @@ li {
   background: no-repeat 0 30px;
 }
 
-#winner.player1 {
+#winner.player_1 {
   background-image: url('http://i.imgur.com/PJL3PP4.jpg');
 }
 
-#winner.player2 {
+#winner.player_2 {
   background-image: url('http://i.imgur.com/OpNuzj6.jpg');
 }
 
@@ -168,7 +168,7 @@ form .button {
 }
 
 form .button:hover {
-  background-color: #43212E;  
+  background-color: #43212E;
 }
 
 .landing-right {
@@ -207,9 +207,9 @@ p.instructions {
 }
 
 .restart:hover {
-  background-color: #43212E;  
+  background-color: #43212E;
 }
 
 p#restart {
-  margin: 0px auto;  
+  margin: 0px auto;
 }

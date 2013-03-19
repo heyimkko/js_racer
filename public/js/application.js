@@ -18,10 +18,10 @@ var Game = function Game($, args) {
   }
 
   this.add_player = function(player) {
-    console.log(player);
     var Player = function Player(player) {
       this.id = player.id;
       this.key = player.key;
+      this.track_id = player.track_id
 
       this.reset = function() {
         this.place = 0;
@@ -69,7 +69,7 @@ var Game = function Game($, args) {
         if (event.keyCode == player.key) {
           player.place += 1;
           if (_this.args.player_move) {
-            _this.args.player_move(player.id + 1);
+            _this.args.player_move(player.track_id, player.place);
           }
         }
       });
@@ -90,7 +90,7 @@ var Game = function Game($, args) {
     _this.remove_controls();
     if (_this.args.player_win) {
       var finish_time = _this.getTime();
-      _this.args.player_win(player.id + 1, finish_time - _this.start_time);
+      _this.args.player_win(player.track_id, finish_time - _this.start_time);
     }
   }
 
@@ -117,18 +117,20 @@ $(document).ready(function() {
     $('#counter').text(n).show();
   }
 
-  function update_player_position(player) {
-    $('#player' + player + "_strip td.active").removeClass('active').next().addClass('active');
+  function move(track, position) {
+    $track = $('#track_' + track);
+    $track.find('td.active').removeClass('active');
+    $track.find('td:eq(' + position + ')').addClass('active');
   }
 
-  function win(player, time) {
-    $('#winner').addClass("player" + player);
+  function win(track, time) {
+    $('#winner').addClass("player_" + track);
     $('#winner').append((time / 1000) + " " + "Seconds!");
 
     $.ajax({
       url: '/save',
       type: 'post',
-      data: {time: time, winner: player}
+      data: {time: time, winner: track}
     }).done(function(data, status, xhr) {
       // console.log(data, status, xhr);
       $('button.restart').show();
@@ -145,9 +147,9 @@ $(document).ready(function() {
   });
 
   var track_length = $('.racer_table tr:first-child td').length;
-  var player1_id = $('#player1_strip').attr('data-player');
-  var player2_id = $('#player2_strip').attr('data-player');
-  var game = new Game($, {track_length: track_length, player_move: update_player_position, player_win: win});
-  game.add_players([{id: player1_id, key: 81}, {id: player2_id, key: 80}]);
+  var player1_id = $('#track_1').attr('data-player');
+  var player2_id = $('#track_2').attr('data-player');
+  var game = new Game($, {track_length: track_length, player_move: move, player_win: win});
+  game.add_players([{id: player1_id, key: 81, track_id: 1}, {id: player2_id, key: 80, track_id: 2}]);
   game.countdown({start: 3, interval: countdown, finish: start_game});
 });
