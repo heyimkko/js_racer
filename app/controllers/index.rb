@@ -33,7 +33,7 @@ end
 
 post '/save' do
   Game.create time: params[:time],
-              winner_id: params[:winner],
+              winner_id: Player.find_by_initials(params[:winner]).id,
               players: [Player.find(session[:player1]), Player.find(session[:player2])]
 end
 

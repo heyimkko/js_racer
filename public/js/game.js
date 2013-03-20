@@ -39,50 +39,40 @@ function Game(player1_initials, player2_initials){
     })
   }
 
+  this.remove_browser_keyup = function() {
+    $(document).unbind('keyup');
+  }
+
   this.checkWinner = function() {
-  //if player1 or player2 position === length of board (25)
-    var $winning_cell = $('td:last-child.active');
-    var $winning_row = $winning_cell.parent('tr');
-    if ($winning_cell) {
-      var player_strip_id = $winning_row.attr('id');
-      if (player_strip_id) {
-        var player_id = player_strip_id.substr(0, player_strip_id.indexOf('_'));
-        $('#winner').addClass(player_id);
+    if (this.player1.position == 25){
+      var winner_class = "player1";
+      var winner = this.player1;
+    } else if (this.player2.position == 25){
+      var winner_class = "player2";
+      var winner = this.player2;
+    } 
+    if (winner){
+      $('#winner').addClass(winner_class);
 
+      this.remove_browser_keyup
 
-        $(document).unbind('keyup');
+      player_initials = winner.initials;
 
-        player_id = $winning_row.attr('data-player');
-
-        date = new Date();
-        time = date.getTime() - time; // 'time' Scope prob broken in SaneJS
-        
-        $('#winner').append((time / 1000) + " " + "Seconds!")
-        
-        $.ajax({
-          url: '/save',
-          type: 'post',
-          data: {time: time, winner: player_id}
-        }).done(function(data, status, xhr) {
-          $('button.restart').show();
-        })
-      }
-    }
+      date = new Date();
+      time = date.getTime() - time;
+      
+      $('#winner').append((time / 1000) + " " + "Seconds!")
+      
+      $.ajax({
+        url: '/save',
+        type: 'post',
+        data: {time: time, winner: player_initials}
+      }).done(function(data, status, xhr) {
+        $('button.restart').show();
+    })
+   }   
   }
 };
-
-// Game.prototype.render = function() {
-//   // redraw
-// }
-
-
-// var new_game = function() {
-//   countdown();
-//   start_game();
-// }
-
-
-
 
 
 
