@@ -1,9 +1,9 @@
 get '/' do
-  # if current_users
-  #   redirect '/play'
-  # else
+  if current_users
+    redirect '/play'
+  else
     erb :index
-  # end
+  end
 end
 
 post '/play' do
