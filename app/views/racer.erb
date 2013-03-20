@@ -9,60 +9,14 @@
 <div id="counter">
 </div>
 <table class="racer_table">
-  <tr id="<%= @player1.initials %>_strip" class="player1_strip">
-    <td class="active"></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr id="<%= @player2.initials %>_strip" class="player2_strip">
-    <td class="active"></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
+    <% [@player1, @player2].each_with_index do |player, index| %>
+      <tr id="<%= player.initials %>_strip" class="player<%= index + 1 %>_strip">
+        <td class="active"></td>
+        <% 24.times do %>
+          <td></td>
+        <% end %>
+      </tr>
+    <% end %>
 </table>
 
 <div id="winner">
