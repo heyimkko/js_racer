@@ -97,11 +97,11 @@ li {
   width: 30px;
 }
 
-#player1_strip td.active {
+.player1_strip td.active {
   background: url('http://static-www.ec.popcap.com/www.popcap.com/sites/all/themes/popcap_2012/images/baby_icons/baby_icon_monopoly.gif');
 }
 
-#player2_strip td.active {
+.player2_strip td.active {
   background: url('http://profile.ak.fbcdn.net/hprofile-ak-ash4/s32x32/188101_105563679583604_1313911932_q.jpg');
 }
 
