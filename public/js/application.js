@@ -65,7 +65,6 @@ $(document).ready(function() {
           type: 'post',
           data: {time: time, winner: player_id}
         }).done(function(data, status, xhr) {
-          console.log(data, status, xhr);
           $('button.restart').show();
         })
       }
