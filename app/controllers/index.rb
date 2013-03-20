@@ -7,21 +7,16 @@ get '/' do
 end
 
 post '/play' do
-  content_type :json
   
   @player1 = Player.find_or_initialize_by_initials(params[:player1])
   @player2 = Player.find_or_initialize_by_initials(params[:player2])
-  # @player1.save
-  # @player2.save
-
+  
   if @player1.save && @player2.save
     session[:player1] = @player1.id
     session[:player2] = @player2.id
-    status 200
-    "/play".to_json
+    erb :racer
   else
-    status 400
-    "/".to_json
+    redirect '/'
   end
 end
 

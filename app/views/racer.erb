@@ -1,3 +1,11 @@
+<script>
+    $(document).ready(function() {
+        var game = new Game("<%= @player1.initials %>", "<%= @player2.initials %>");
+        game.countdown();
+        game.start_game();
+    });
+</script>
+
 <div id="counter">
 </div>
 <table class="racer_table">
