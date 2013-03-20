@@ -1,16 +1,15 @@
-function Game(id, player1_initials, player2_initials){
-  this.id = id
-  this.player1 = new Player({
-    initials: player1_initials});
-  this.player2 = new Player({
-    initials: player2_initials});
+function Game(player1_initials, player2_initials){
+  this.player1 = new Player(player1_initials);
+  this.player2 = new Player(player2_initials);
+  this.length = 25;
 }
 
-Game.prototype.render = function() {
-  // redraw
-}
+// Game.prototype.render = function() {
+//   // redraw
+// }
 
-Game.prototype.countdown = function() {
+
+var countdown = function() {
   var counter = 3;
   var count_int = setInterval(function() {
     $('#counter').text(counter).show();
@@ -18,13 +17,11 @@ Game.prototype.countdown = function() {
     if (counter < 0) {
       clearInterval(count_int);
       $('#counter').hide();
-      start_game();
       }
     }, 1000);
-  }
 }
 
-Game.prototype.start_game = function {
+var start_game = function() {
   date = new Date();
   time = date.getTime();
   $('button.restart').hide();
@@ -41,35 +38,42 @@ Game.prototype.start_game = function {
   });
 }
 
-Game.prototype.checkWinner = function {
-    //if player1 or player2 position === length of board (25)
-    var $winning_cell = $('td:last-child.active');
-    var $winning_row = $winning_cell.parent('tr');
-    if ($winning_cell) {
-      var player_strip_id = $winning_row.attr('id');
-      if (player_strip_id) {
-        var player_id = player_strip_id.substr(0, player_strip_id.indexOf('_'));
-        $('#winner').addClass(player_id);
+var new_game = function() {
+  countdown();
+  start_game();
+}
 
 
-        $(document).unbind('keyup');
+// var checkWinner = function() {
+//     //if player1 or player2 position === length of board (25)
+//     var $winning_cell = $('td:last-child.active');
+//     var $winning_row = $winning_cell.parent('tr');
+//     if ($winning_cell) {
+//       var player_strip_id = $winning_row.attr('id');
+//       if (player_strip_id) {
+//         var player_id = player_strip_id.substr(0, player_strip_id.indexOf('_'));
+//         $('#winner').addClass(player_id);
 
-        player_id = $winning_row.attr('data-player');
 
-        date = new Date();
-        time = date.getTime() - time; // 'time' Scope prob broken in SaneJS
+//         $(document).unbind('keyup');
+
+//         player_id = $winning_row.attr('data-player');
+
+//         date = new Date();
+//         time = date.getTime() - time; // 'time' Scope prob broken in SaneJS
         
-        $('#winner').append((time / 1000) + " " + "Seconds!")
+//         $('#winner').append((time / 1000) + " " + "Seconds!")
         
-        $.ajax({
-          url: '/save',
-          type: 'post',
-          data: {time: time, winner: player_id}
-        }).done(function(data, status, xhr) {
-          $('button.restart').show();
-        })
-      }
-    }
-  }
+//         $.ajax({
+//           url: '/save',
+//           type: 'post',
+//           data: {time: time, winner: player_id}
+//         }).done(function(data, status, xhr) {
+//           $('button.restart').show();
+//         })
+//       }
+//     }
+//   }
 
 
+// var game = new Game(@player1.initials, @player2.initials);

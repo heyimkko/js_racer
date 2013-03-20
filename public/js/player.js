@@ -1,8 +1,9 @@
 function Player(initials){
-  this.initials = initials
+  this.initials = initials;
+  this.position = 0;
 }
 
-Player.prototype.update_player_position = function {
-  player.position = player.position + 1
+var update_player_position = function() {
+  player.position = player.position + 1;
   checkWinner();
 }
