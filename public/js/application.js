@@ -54,7 +54,7 @@ $(document).ready(function() {
         $(document).unbind('keyup');
 
         player_id = $winning_row.attr('data-player');
-        console.log(player_id);
+
         date = new Date();
         time = date.getTime() - time;
         
