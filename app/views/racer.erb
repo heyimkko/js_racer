@@ -2,7 +2,17 @@
     $(document).ready(function() {
         var game = new Game("<%= @player1.initials %>", "<%= @player2.initials %>");
         game.countdown();
-        game.start_game();
+        
+
+    $('button.restart').click(function(e) {
+        $('td').removeClass('active');
+        $('td:first-child').addClass('active');
+        $('#winner').empty().removeClass();
+        $(this).hide();
+
+        game = new Game("<%= @player1.initials %>", "<%= @player2.initials %>");
+        game.countdown();
+        });
     });
 </script>
 

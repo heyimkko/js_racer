@@ -3,17 +3,6 @@ function Game(player1_initials, player2_initials){
   this.player2 = new Player(player2_initials);
   this.length = 25;
 
-  this.countdown = function() {
-    var counter = 1; // Change back
-    var count_int = setInterval(function() {
-      $('#counter').text(counter).show();
-      counter--;
-      if (counter < 0) {
-        clearInterval(count_int);
-        $('#counter').hide();
-        }
-      }, 1000);
-  }
 
   this.start_game = function() {
     date = new Date();
@@ -21,6 +10,22 @@ function Game(player1_initials, player2_initials){
     $('button.restart').hide();
     this.set_browser_keyup();
   }
+
+  this.countdown = function() {
+    $this = this
+
+    var counter = 3;
+    var count_int = setInterval(function() {
+      $('#counter').text(counter).show();
+      counter--;
+      if (counter < 0) {
+        clearInterval(count_int);
+        $('#counter').hide();
+        $this.start_game();
+        }
+      }, 1000);
+  }
+
 
   this.set_browser_keyup = function() {
     var game = this;
@@ -54,7 +59,7 @@ function Game(player1_initials, player2_initials){
     if (winner){
       $('#winner').addClass(winner_class);
 
-      this.remove_browser_keyup
+      this.remove_browser_keyup();
 
       player_initials = winner.initials;
 
